@@ -51,6 +51,18 @@ const TaskTable = () => {
     }
   };
 
+  const handleChangeStatus = async (id, currentStatus) => {
+    const newStatus = currentStatus === 'Open' ? 'Closed' : 'Open';
+    const response = await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: newStatus }),
+    });
+    if (response.ok) {
+      fetchTasks();
+    }
+  };
+
   const handleFilter = (e) => {
     setFilter(e.target.value);
   };
@@ -60,15 +72,18 @@ const TaskTable = () => {
   );
 
   return (
-    <div>
-      <button onClick={() => setIsModalOpen(true)}>New Task</button>
-      <select onChange={handleFilter}>
-        <option value="">All</option>
-        <option value="Call">Call</option>
-        <option value="Meeting">Meeting</option>
-        <option value="Video Call">Video Call</option>
-      </select>
-      <table>
+    <div className="task-table-container">
+      <div className="controls">
+        <button className="btn-new-task" onClick={() => setIsModalOpen(true)}>New Task</button>
+        <select className="filter-select" onChange={handleFilter}>
+          <option value="">All</option>
+          <option value="Call">Call</option>
+          <option value="Meeting">Meeting</option>
+          <option value="Video Call">Video Call</option>
+        </select>
+      </div>
+
+      <table className="task-table">
         <thead>
           <tr>
             <th>Date</th>
@@ -78,7 +93,7 @@ const TaskTable = () => {
             <th>Contact Person</th>
             <th>Note</th>
             <th>Status</th>
-            <th>Options</th>
+            {/* Removed the Options header */}
           </tr>
         </thead>
         <tbody>
@@ -92,13 +107,22 @@ const TaskTable = () => {
               <td>{task.note}</td>
               <td>{task.status}</td>
               <td>
-                <button onClick={() => setCurrentTask(task)}>Edit</button>
-                <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
+                <div className="dropdown">
+                  <button className="dropdown-btn">Options</button>
+                  <div className="dropdown-content">
+                    <button onClick={() => setCurrentTask(task)}>Edit</button>
+                    <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
+                    <button onClick={() => handleChangeStatus(task.id, task.status)}>
+                      Change Status to {task.status === 'Open' ? 'Closed' : 'Open'}
+                    </button>
+                  </div>
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
       {isModalOpen && (
         <TaskModal
           task={currentTask}

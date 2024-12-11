@@ -31,7 +31,7 @@ const TaskModal = ({ task, onSave, onClose }) => {
   return (
     <div className="modal">
       <div className="modal-content">
-        <h2>{task ? 'Edit Task' : 'New Task'}</h2>
+        <h2>{'New Task'}</h2>
         <form onSubmit={handleSubmit}>
           <label>
             Entity Name:
