@@ -1,171 +1,227 @@
 /* Main Container */
 .task-table-container {
-    padding: 30px;
-    max-width: 1100px;
-    margin: auto;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-family: 'Roboto', sans-serif;
+  padding: 30px;
+  max-width: 1100px;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Button Styles */
+.btn-new-task, .btn-edit, .btn-delete {
+  padding: 10px 16px;
+  margin: 5px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+/* New Task Button */
+.btn-new-task {
+  background-color: #5cb85c;
+  color: #fff;
+}
+
+.btn-new-task:hover {
+  background-color: #4cae4c;
+}
+
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  padding: 8px 16px;
+  background-color: #f0ad4e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dropdown-btn:hover {
+  background-color: #e67e22; /* Slightly darker for hover effect */
+  transform: scale(1.05); /* Adds slight scale effect on hover */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 6px;
+}
+
+.dropdown-content button {
+  padding: 10px;
+  background-color: transparent;
+  color: #495057;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content button:hover {
+  background-color: #f8f9fa;
+  color: #007bff;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Task Type Dropdown Hover - Add hover effect on task type dropdown */
+.dropdown-btn:hover {
+  background-color: #e67e22;
+}
+
+.dropdown-content button:active {
+  background-color: #f1c40f;
+}
+
+/* Task Type Header and Flask Icon Styling */
+.task-type-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;  /* So the dropdown can be positioned relative to this element */
+}
+
+.flask-icon {
+  margin-left: 5px;
+  font-size: 1.2em; /* Adjust size as needed */
+}
+
+/* Task Type Dropdown Styling */
+.dropdown-menu {
+  position: absolute;  /* Position it below the Task Type header */
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;  /* Space between the header and dropdown */
+  z-index: 10;  /* Ensure the dropdown appears above other elements */
+  width: max-content; /* Adjust width based on content */
+}
+
+/* Style each checkbox label in the dropdown */
+.dropdown-menu label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px; /* Adjust font size as needed */
+}
+
+/* Add spacing between the checkboxes */
+.dropdown-menu input {
+  margin-right: 8px;
+}
+
+/* Table Styling */
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.task-table th, .task-table td {
+  padding: 15px 20px;
+  text-align: left;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+/* Hover Effects for Task Rows */
+.task-table tbody tr:hover {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
+.task-table th {
+  background-color: #f8f9fa;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.task-table td {
+  color: #6c757d;
+}
+
+/* Task Type Icon */
+.task-type-icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .task-table-container {
+    padding: 15px;
   }
-  
-  /* Button Styles */
-  .btn-new-task, .btn-edit, .btn-delete {
-    padding: 10px 16px;
-    margin: 5px;
-    font-size: 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: none;
-  }
-  
-  /* New Task Button */
-  .btn-new-task {
-    background-color: #5cb85c;
-    color: #fff;
-  }
-  
-  .btn-new-task:hover {
-    background-color: #4cae4c;
-  }
-  
-  /* Dropdown Styles */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-btn {
-    padding: 8px 16px;
-    background-color: #f0ad4e;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  .dropdown-btn:hover {
-    background-color: #ec971f;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #ffffff;
-    min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-radius: 6px;
-  }
-  
-  .dropdown-content button {
-    padding: 10px;
-    background-color: transparent;
-    color: #495057;
-    border: none;
-    width: 100%;
-    text-align: left;
-  }
-  
-  .dropdown-content button:hover {
-    background-color: #f8f9fa;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  /* Table Styling */
-  .task-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 14px;
-  }
-  
   .task-table th, .task-table td {
-    padding: 15px 20px;
-    text-align: left;
-    border-bottom: 1px solid #f2f2f2;
+    padding: 10px;
   }
-  
-  .task-table th {
-    background-color: #343a40;
-    color: #fff;
-    font-weight: 500;
+  .btn-new-task {
+    width: 100%;
   }
-  
-  .task-table td {
-    color: #495057;
-    font-weight: 300;
-  }
-  
-  .task-table tr:hover {
-    background-color: #f8f9fa;
-  }
-  
-  .task-table td {
-    vertical-align: middle;
-  }
-  
-  /* Filter and Controls */
-  .controls {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .controls .btn-new-task {
-    padding: 12px 18px;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  .controls .btn-new-task:hover {
-    background-color: #0056b3;
-  }
-  
-  .filter-select {
-    padding: 8px 12px;
-    font-size: 14px;
-    border: 1px solid #ced4da;
-    border-radius: 6px;
-    background-color: #fff;
-    color: #495057;
-    cursor: pointer;
-  }
-  
-  .filter-select:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
-  /* Responsive Styling for Small Screens */
-  @media screen and (max-width: 768px) {
-    .task-table-container {
-      padding: 20px;
-    }
-  
-    .task-table th, .task-table td {
-      font-size: 12px;
-      padding: 10px;
-    }
-  
-    .controls {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .filter-select {
-      margin-top: 10px;
-    }
-  
-    .task-table td, .task-table th {
-      text-align: left;
-    }
-  }
-  
+}
+
+/* Status Container Styles */
+.status-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.hover-popup {
+  position: absolute;
+  top: -70px;
+  left: 0;
+  background: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 8px;
+  display: none;
+  flex-direction: column; /* Arrange elements vertically */
+  width: auto; /* Adjust width to fit the content */
+  z-index: 100;
+}
+
+.status-container:hover .hover-popup {
+  display: flex;
+}
+
+.popup-header {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.popup-options {
+  display: flex;
+  justify-content: space-between; /* Align buttons horizontally */
+}
+
+.popup-option {
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+
+.popup-option:hover {
+  background-color: #f0f0f0;
+}
+
+.popup-option.active {
+  background-color: orange;
+  color: white;
+}
