@@ -13,19 +13,21 @@ const TaskTable = () => {
   const [teamMembersFilter, setTeamMembersFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [dropdownVisible, setDropdownVisible] = useState(false); // Manage dropdown visibility
+  const API_BASE_URL=process.env.REACT_APP_API_BASE_URL
+
 
   useEffect(() => {
     fetchTasks();
   }, []);
 
   const fetchTasks = async () => {
-    const response = await fetch('http://localhost:5000/tasks');
+    const response = await fetch(`${API_BASE_URL}/tasks`);
     const data = await response.json();
     setTasks(data);
   };
 
   const handleAddTask = async (task) => {
-    const response = await fetch('http://localhost:5000/tasks', {
+    const response = await fetch(`${API_BASE_URL}/tasks`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(task),
@@ -38,7 +40,7 @@ const TaskTable = () => {
 
   const handleSaveTask = async (task) => {
     if (currentTask) {
-      const response = await fetch(`http://localhost:5000/tasks/${currentTask.id}`, {
+      const response = await fetch(`${API_BASE_URL}/tasks/${currentTask.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(task),
@@ -54,7 +56,7 @@ const TaskTable = () => {
   };
 
   const handleDeleteTask = async (id) => {
-    const response = await fetch(`http://localhost:5000/tasks/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/tasks/${id}`, {
       method: 'DELETE',
     });
     if (response.ok) {
@@ -64,7 +66,7 @@ const TaskTable = () => {
 
   const handleChangeStatus = async (id, currentStatus) => {
     const newStatus = currentStatus === 'Open' ? 'Closed' : 'Open';
-    const response = await fetch(`http://localhost:5000/tasks/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/tasks/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status: newStatus }),
