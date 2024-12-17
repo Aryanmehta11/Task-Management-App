@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from extensions import db
-from models import Task
+from backend.extensions import db
+from backend.models import Task
 
 routes = Blueprint('routes', __name__)
 
