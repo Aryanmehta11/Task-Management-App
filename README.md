@@ -8,7 +8,7 @@ This is a full-stack task management application built with a **Flask backend** 
 
 - **Create, Read, Update, and Delete (CRUD)** tasks.
 - Backend deployed on [Render](https://task-management-app-cl1t.onrender.com).
-- Frontend deployed using Render's Static Site Hosting.
+- Frontend deployed using Render's Static Site Hosting on [Render](https://task-management-app-frontend-z7di.onrender.com).
 - Fully responsive and user-friendly UI.
 
 ---
@@ -31,68 +31,24 @@ This is a full-stack task management application built with a **Flask backend** 
 
 ### Backend
 The backend is structured as follows:
-backend/ │ ├── extensions/ # Formerly backend.extensions, handles app extensions like CORS, SQLAlchemy, etc. ├── routes/ # Formerly backend.routes, contains all API route definitions. ├── models/ # Defines database models. ├── services/ # Contains business logic and service functions. ├── utils/ # Utility functions for backend tasks. └── main.py # The main entry point for the Flask app.
+- It has a main entry file which is main.py.
+- The routes.py has all the HTTP Methods configured and which are then used by main.py.
+- Extensions.py and Models.py where exntensions helps in defining the database and models helps in creating the structure.
+- Please remove backend from backend.extensions to extensions  , backend.routes to routes. These changes were done for deployment on render.
+- Please make use of a persistant database , I have made use of simpler one inbuilt SQlite which is not persistant.
 
-csharp
-Copy code
+
+
 
 ### Frontend
 The frontend is structured as follows:
-frontend/ │ ├── src/ │ ├── components/ # Reusable React components. │ ├── pages/ # Page-level components. │ ├── utils/ # Utility functions for frontend tasks. │ └── App.js # Main React App component. └── public/ # Static assets.
+- This has the app.js has the main entry point of the file.
+- We have TaskTable here which displays the data to the user and communicates with the backend.
+- TaskModal.js is the form whhich appears when the user clicks on the add new task and is further integrated with TaskTable.
 
-yaml
-Copy code
+### Future Improvements
+- Add user authentication.
+- Support for multiple users.
+- Enhance the UI/UX design.
 
----
 
-## Installation
-
-### 1. Clone the Repository
-git clone <repository_url>
-cd task-management-app
-2. Setup Backend
-Navigate to the backend directory:
-bash
-Copy code
-cd backend
-Install dependencies:
-bash
-Copy code
-pip install -r requirements.txt
-Run the backend server:
-bash
-Copy code
-python main.py
-The backend will run at http://localhost:5000.
-3. Setup Frontend
-Navigate to the frontend directory:
-bash
-Copy code
-cd frontend
-Install dependencies:
-bash
-Copy code
-npm install
-Add an .env file in the frontend directory with:
-plaintext
-Copy code
-REACT_APP_API_BASE_URL=http://localhost:5000
-Run the frontend server:
-bash
-Copy code
-npm start
-The frontend will run at http://localhost:3000.
-Deployment
-Backend Deployment (Render)
-Deploy the Flask app on Render with your backend/ directory.
-Use https://task-management-app-cl1t.onrender.com as your backend URL.
-Frontend Deployment (Render)
-Build the React app:
-bash
-Copy code
-npm run build
-Deploy the frontend/build folder on Render Static Site Hosting.
-In Render's environment settings, set:
-plaintext
-Copy code
-REACT_APP_API_BASE_URL=https://task-management-app-cl1t.onrender.com
