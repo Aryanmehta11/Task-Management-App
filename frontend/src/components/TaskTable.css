@@ -225,3 +225,20 @@
   background-color: orange;
   color: white;
 }
+
+.task-icon {
+  margin-right: 8px; /* Adds space between icon and text */
+  color: #007bff;    /* Optional: consistent icon color */
+  font-size: 16px;   /* Adjust icon size */
+}
+
+label {
+  display: flex;           /* Align checkbox, icon, and text horizontally */
+  align-items: center;     /* Vertically center elements */
+  margin: 6px 0;           /* Adds spacing between items */
+  cursor: pointer;
+}
+
+label input[type="checkbox"] {
+  margin-right: 6px;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TaskModal from './TaskModal';
 import './TaskTable.css';
-import { FaFlask } from 'react-icons/fa'; // Flask icon import
+import { FaFlask, FaPhone, FaUsers, FaVideo, FaMapMarker } from 'react-icons/fa'; // Flask icon import
 
 const TaskTable = () => {
   const [tasks, setTasks] = useState([]);
@@ -125,8 +125,8 @@ const TaskTable = () => {
       <table className="task-table">
         <thead>
           <tr>
-            <th onClick={() => handleSort('date_created')}>Date</th>
-            <th onClick={() => handleSort('entity_name')}>Entity Name</th>
+            <th onClick={() => handleSort('date_created')}>Date <FaFlask className="flask-icon" /></th>
+            <th onClick={() => handleSort('entity_name')}>Entity Name <FaFlask className="flask-icon" /></th>
             <th>
               <div className="task-type-header" onClick={toggleDropdown}>
                 Task Type <FaFlask className="flask-icon" />
@@ -140,6 +140,8 @@ const TaskTable = () => {
                       checked={taskTypeFilter.includes('Call')}
                       onChange={() => handleTaskTypeChange('Call')}
                     />
+                    <FaPhone className="task-icon" />
+                    
                     Call
                   </label>
                   <label>
@@ -148,23 +150,29 @@ const TaskTable = () => {
                       checked={taskTypeFilter.includes('Meeting')}
                       onChange={() => handleTaskTypeChange('Meeting')}
                     />
+                    <FaUsers className="task-icon" />
+                    
                     Meeting
                   </label>
                   <label>
+                 
                     <input
                       type="checkbox"
                       checked={taskTypeFilter.includes('Video Call')}
                       onChange={() => handleTaskTypeChange('Video Call')}
-                    />
+                    /> 
+                     <FaVideo className="task-icon" />
+                    
                     Video Call
                   </label>
                 </div>
               )}
             </th>
-            <th onClick={() => handleSort('time')}>Time</th>
-            <th onClick={() => handleSort('contact_person')}>Contact Person</th>
-            <th onClick={() => handleSort('note')}>Note</th>
-            <th onClick={() => handleSort('status')}>Status</th>
+            <th onClick={() => handleSort('time')}>Time <FaFlask className="flask-icon" /></th>
+            <th onClick={() => handleSort('contact_person')}>Contact Person <FaFlask className="flask-icon" /></th>
+            
+            <th onClick={() => handleSort('note')}>Note <FaFlask className="flask-icon" /></th>
+            <th onClick={() => handleSort('status')}>Status <FaFlask className="flask-icon" /></th>
           </tr>
         </thead>
         <tbody>
